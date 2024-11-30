@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Remove Buy Now Button",
+  "version": "1.0",
+  "description": "Hides the 'Buy Now' button on Amazon product pages.",
+  "permissions": ["storage", "alarms", "activeTab", "tabs"],
+  "host_permissions": ["*://*.amazon.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.com/*"],
+      "js": ["content.js"]
+    }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+      },
+      "default_popup_height": 600,
+      "default_popup_width": 600
+      
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["log.html"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+
+}
+
+  
+  

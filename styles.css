@@ -1,0 +1,120 @@
+/* styles.css */
+/* Make the lock mode checkbox and its label bigger */
+body {
+  width: 400px; /* Set width */
+  height: 600px; /* Set height */
+  margin: 0;
+  padding: 20px; /* Optional: Add padding inside the popup */
+  box-sizing: border-box; /* Ensure padding doesn't increase the width/height */
+  background-color: #87CEEB;
+}
+label {
+  font-size: 18px; /* Increase font size */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Add spacing below the label */
+}
+
+/* Optional: Center the popup content */
+h3, label, input, button {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  width: 25px; /* Increase width */
+  height: 25px; /* Increase height */
+  margin-right: 10px; /* Add spacing between checkbox and label */
+}
+
+#timeRange {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#timeRange label {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+#daySelection {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#daySelection label {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+/* Adjust input box for duration */
+input#lockDuration {
+  font-size: 16px;
+  padding: 10px; /* Add padding inside the box */
+  width: 100px; /* Adjust the width */
+}
+
+/* Adjust button size */
+button#setLock {
+  font-size: 16px;
+  padding: 10px 20px; /* Add padding for a larger button */
+  cursor: pointer; /* Add a pointer cursor for better UX */
+}
+
+/* Style for the timer display */
+p#timer {
+  font-size: 16px; /* Larger font for visibility */
+  margin-top: 20px; /* Add spacing above the timer */
+  font-weight: bold; /* Make it bold for emphasis */
+  color: #333; /* Change color for better visibility */
+}
+
+#bottomSubmitOrderButtonId{
+  display: none !important;
+}
+
+input#placeOrder.a-button-input.place-your-order-button {
+  display: none !important;
+}
+
+span#submit.buy-now-announce.a-button-text{
+  display: none !important;
+}
+
+span#submit.buy-now.a-button.a-button-oneclick.a-button-icon.onml-buy-now-button{
+  display: none !important;
+}
+
+input#buy-now-button.a-button-input{
+  display: none !important;
+}
+span#submit.buy-now-announce{
+  display: none !important;
+}
+
+div#buyNow.a-section.a-spacing-base{
+  display: none !important;
+}
+
+a.woot-flat-button.offer-detail.add-to-the-cart.disabled{
+  display: none !important;
+}
+
+div.checkout-button-message-container{
+  display: none !important;
+}
+
+/* .elementsToHide {
+  display: none !important;
+} */
