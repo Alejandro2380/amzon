@@ -18,7 +18,6 @@ function initializeScript() {
     console.log("Initializing script in a valid extension context...");
 
     attachAddToCartListener();
-    processStoredProductDetails(); // Process details after navigation
 
     observeDomChanges(); // Observe dynamic DOM updates
     hideBuyButtonsForBlockedItems();
@@ -30,6 +29,8 @@ function initializeScript() {
 function attachAddToCartListener() {
     document.body.addEventListener('click', (event) => {
         if (event.target && event.target.id === 'add-to-cart-button') {
+            event.preventDefault(); // Prevent navigation temporarily
+
             const productName = document.querySelector('#productTitle')?.innerText.trim() || "Unknown Product Name";
             const productId = document.querySelector('[data-asin]')?.getAttribute('data-asin') || "Unknown Product ID";
 
@@ -37,10 +38,10 @@ function attachAddToCartListener() {
             console.log("Detected Add to Cart Click:", { productId, productName });
 
             if (productId && productName) {
-                console.log("Adding Product to Blocked Items:", { productId, productName });
-                chrome.storage.local.set({ lastProduct: { productId, productName } });
+                blockItem(productId, productName); // Add the product to the blocked list
+                window.location.href = event.target.href; // Resume navigation
 
-                blockItem(productId, productName); // Save product to blocked items
+      // Save product to blocked items
             } else {
                 console.error("Failed to capture product details.");
             }
@@ -84,6 +85,7 @@ function observeDomChanges() {
 // Add item to blocked list
 function blockItem(productId, productName) {
     chrome.storage.local.get(['blockedItems'], (data) => {
+
         const blockedItems = data.blockedItems || {};
         const expirationTime = Date.now() + 3 * 24 * 60 * 60 * 1000; // Block for 3 days
 
@@ -98,20 +100,6 @@ function blockItem(productId, productName) {
     });
 }
 
-
-function processStoredProductDetails() {
-    chrome.storage.local.get('lastProduct', (data) => {
-        const lastProduct = data.lastProduct;
-        if (lastProduct) {
-            console.log("Retrieved Last Product:", lastProduct);
-            blockItem(lastProduct.productId, lastProduct.productName);
-            // Clear stored details after processing
-            chrome.storage.local.remove('lastProduct');
-        } else {
-            console.error("No product details found after navigation.");
-        }
-    });
-}
 // Start monitoring navigation and initialize the script
 initializeScript();
 
